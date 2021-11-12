@@ -10,4 +10,17 @@ class Asset < ApplicationRecord
   validates :filename, presence: true
   validates :library, presence: true
   validates :uploader, presence: true
+
+  def self.search(params)
+    library_id = params[:library_id]
+    search = params[:search]
+
+    # creating search engine to search by search phrase or for all in the library
+    # ordering by asset index DESC by default
+    if search
+      where("LOWER(title) LIKE ? AND library_id = ?", "%#{search.downcase}%", "#{library_id}").order('id DESC')
+    else
+      where("library_id = ?", "#{library_id}").order('id DESC')
+    end
+  end 
 end
