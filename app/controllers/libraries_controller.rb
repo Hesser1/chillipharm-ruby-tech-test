@@ -1,6 +1,6 @@
 class LibrariesController < ApplicationController
   def show
-    @assets = Asset.where(library_id: current_library.id)
+    @assets = Asset.search({library_id: current_library.id, search: params[:search]}) 
   end
 
   def index
