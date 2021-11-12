@@ -14,13 +14,40 @@ class Asset < ApplicationRecord
   def self.search(params)
     library_id = params[:library_id]
     search = params[:search]
+    sort = params[:sort] || 'id_desc'  # sort types ['created_at_desc', 'created_at_asc', 'title_asc', 'title_desc']
+    
+    # changing asc/desc to uppercase
+    sort_arr = sort.split('_')
+    sort_arr.last.upcase!
 
-    # creating search engine to search by search phrase or for all in the library
-    # ordering by asset index DESC by default
-    if search
-      where("LOWER(title) LIKE ? AND library_id = ?", "%#{search.downcase}%", "#{library_id}").order('id DESC')
-    else
-      where("library_id = ?", "#{library_id}").order('id DESC')
+    sort_param =  if sort_arr.size == 2
+                    sort_arr.join(' ')
+                  else
+                    sort_arr[0..-2].join('_') + " #{sort_arr.last}"
+                  end
+
+    filter = params[:filter] # filter types ['all', 'video', 'audio', 'image']
+
+    # creating search engine
+    query_str = ""
+    query_arr = []
+    query_params = {}
+    query_params.merge!({:library_id => "#{library_id}"})
+    query_arr.append('library_id = :library_id')
+
+    if search.present?
+      query_params.merge!({:search => "%#{search.downcase}%"})
+      query_arr.append('LOWER(title) LIKE :search')
     end
+
+    if filter.present? && filter != 'all'
+      query_params.merge!({:filter => "#{file_types[filter]}"})
+      query_arr.append('file_type = :filter')
+    end
+    
+    # joining query array into string
+    query_str = query_arr.join(' AND ')
+
+    where(query_str, query_params).order(sort_param)
   end 
 end

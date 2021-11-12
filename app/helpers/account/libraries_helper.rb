@@ -27,7 +27,7 @@ module Account::LibrariesHelper
     end
   end
 
-  def filter_link(filter, sort, search, section, library, object=nil)
+  def filter_link(filter, sort, search, display_assets, section, library, object=nil)
     args = {}
     args[:filter] = filter
 
@@ -39,12 +39,43 @@ module Account::LibrariesHelper
       args[:search] = search
     end
 
+    if display_assets.present?
+      args[:display_assets] = display_assets
+    end
+
     section_link(library, section, args, object)
   end
 
-  def sort_link(sort, filter, search, section, library, object=nil)
+  def sort_link(sort, filter, search, display_assets, section, library, object=nil)
     args = {}
     args[:sort] = sort
+
+    if filter.present?
+      args[:filter] = filter
+    end
+
+    if search.present?
+      args[:search] = search
+    end
+
+    if display_assets.present?
+      args[:display_assets] = display_assets
+    end
+
+    section_link(library, section, args, object)
+  end
+
+  def list_link(filter, search, section, library, object=nil)
+    link('display_assets_as_list' ,filter, search, section, library, object=nil)
+  end
+
+  def grid_link(filter, search, section, library, object=nil)
+    link('display_assets_as_grid' ,filter, search, section, library, object=nil)
+  end
+
+  def link(display_assets, filter, search, section, library, object=nil)
+    args = {}
+    args[:display_assets] = display_assets
 
     if filter.present?
       args[:filter] = filter

@@ -51,10 +51,10 @@
             <%= current_filter_label(params[:filter]) %>
           </a>
           <ul class="dropdown-menu change-value dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu">
-            <li role="presentation"><%= link_to "All File Types", filter_link("all", params[:sort], params[:search], "library", current_library), role: "menuitem", "data-filter-key" => "filter", "data-filter-value" => "all" %></li>
-            <li role="presentation"><%= link_to "Video Only", filter_link("video", params[:sort], params[:search], "library", current_library), role: "menuitem", "data-filter-key" => "filter", "data-filter-value" => "video" %></li>
-            <li role="presentation"><%= link_to "Audio Only", filter_link("audio", params[:sort], params[:search], "library", current_library), role: "menuitem", "data-filter-key" => "filter", "data-filter-value" => "audio" %></li>
-            <li role="presentation"><%= link_to "Images Only", filter_link("image", params[:sort], params[:search], "library", current_library), role: "menuitem", "data-filter-key" => "filter", "data-filter-value" => "image" %></li>
+            <li role="presentation"><%= link_to "All File Types", filter_link("all", params[:sort], params[:search], params[:display_assets], "library", current_library), role: "menuitem", "data-filter-key" => "filter", "data-filter-value" => "all" %></li>
+            <li role="presentation"><%= link_to "Video Only", filter_link("video", params[:sort], params[:search], params[:display_assets], "library", current_library), role: "menuitem", "data-filter-key" => "filter", "data-filter-value" => "video" %></li>
+            <li role="presentation"><%= link_to "Audio Only", filter_link("audio", params[:sort], params[:search], params[:display_assets], "library", current_library), role: "menuitem", "data-filter-key" => "filter", "data-filter-value" => "audio" %></li>
+            <li role="presentation"><%= link_to "Images Only", filter_link("image", params[:sort], params[:search], params[:display_assets], "library", current_library), role: "menuitem", "data-filter-key" => "filter", "data-filter-value" => "image" %></li>
           </ul>
         </div>
         <div class="dropdown filter-actions">
@@ -63,10 +63,10 @@
             <%= current_sort_label(params[:sort]) %>
           </a>
           <ul class="dropdown-menu change-value dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu">
-            <li role="presentation"><%= link_to "Most Recent", sort_link(:created_at_desc, params[:filter], params[:search], "library", current_library), role: "menuitem", "data-filter-key" => "sort", "data-filter-value" => "created_at_desc" %></li>
-            <li role="presentation"><%= link_to "Oldest", sort_link(:created_at_asc, params[:filter], params[:search], "library", current_library), role: "menuitem", "data-filter-key" => "sort", "data-filter-value" => "created_at_asc" %></li>
-            <li role="presentation"><%= link_to "Title A-Z", sort_link(:title_asc, params[:filter], params[:search], "library", current_library), role: "menuitem", "data-filter-key" => "sort", "data-filter-value" => "title_asc" %></li>
-            <li role="presentation"><%= link_to "Title Z-A", sort_link(:title_desc, params[:filter], params[:search], "library", current_library), role: "menuitem", "data-filter-key" => "sort", "data-filter-value" => "title_desc" %></li>
+            <li role="presentation"><%= link_to "Most Recent", sort_link(:created_at_desc, params[:filter], params[:search], params[:display_assets], "library", current_library), role: "menuitem", "data-filter-key" => "sort", "data-filter-value" => "created_at_desc" %></li>
+            <li role="presentation"><%= link_to "Oldest", sort_link(:created_at_asc, params[:filter], params[:search], params[:display_assets], "library", current_library), role: "menuitem", "data-filter-key" => "sort", "data-filter-value" => "created_at_asc" %></li>
+            <li role="presentation"><%= link_to "Title A-Z", sort_link(:title_asc, params[:filter], params[:search], params[:display_assets], "library", current_library), role: "menuitem", "data-filter-key" => "sort", "data-filter-value" => "title_asc" %></li>
+            <li role="presentation"><%= link_to "Title Z-A", sort_link(:title_desc, params[:filter], params[:search], params[:display_assets], "library", current_library), role: "menuitem", "data-filter-key" => "sort", "data-filter-value" => "title_desc" %></li>
           </ul>
         </div>
       </div>
