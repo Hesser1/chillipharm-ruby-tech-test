@@ -1,13 +1,13 @@
 <div id="library-display-options" class="display-options no-pad">
     <ul>
       <li>
-        <a class="list <%= params['display_assets'].eql?('display_assets_as_list') ? 'active' : '' %>" href=<%= list_link(params[:filter], params[:search], "library", current_library)%>>
+        <a class="list <%= params['display_assets'].eql?('display_assets_as_list') ? 'active' : '' %>" href=<%= list_link(params[:filter], params[:search], params[:sort], "library", current_library)%>>
           <i class="fa fa-align-justify"></i>
           <span>List</span>
         </a>
       </li>
       <li>
-        <a class="grid <%= (params['display_assets'].eql?('display_assets_as_grid') || params['display_assets'].nil?) ? 'active' : '' %>" href=<%= grid_link(params[:filter], params[:search], "library", current_library)%>>
+        <a class="grid <%= (params['display_assets'].eql?('display_assets_as_grid') || params['display_assets'].nil?) ? 'active' : '' %>" href=<%= grid_link(params[:filter], params[:search], params[:sort], "library", current_library)%>>
           <i class="fa fa-th-large"></i>
           <span>Grid</span>
         </a>        

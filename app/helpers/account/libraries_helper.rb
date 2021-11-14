@@ -65,20 +65,28 @@ module Account::LibrariesHelper
     section_link(library, section, args, object)
   end
 
-  def list_link(filter, search, section, library, object=nil)
-    link('display_assets_as_list' ,filter, search, section, library, object=nil)
+  def list_link(filter, search, sort, section, library, object=nil)
+    link('display_assets_as_list', filter, search, sort, section, library, object=nil)
   end
 
-  def grid_link(filter, search, section, library, object=nil)
-    link('display_assets_as_grid' ,filter, search, section, library, object=nil)
+  def grid_link(filter, search, sort, section, library, object=nil)
+    link('display_assets_as_grid', filter, search, sort, section, library, object=nil)
   end
 
-  def link(display_assets, filter, search, section, library, object=nil)
+  def search_link(filter, search, sort, display_assets, section, library, object=nil)
+    link(display_assets, filter, search, sort, section, library, object=nil)
+  end
+   
+  def link(display_assets, filter, search, sort, section, library, object=nil)
     args = {}
     args[:display_assets] = display_assets
 
     if filter.present?
       args[:filter] = filter
+    end
+
+    if sort.present?
+      args[:sort] = sort
     end
 
     if search.present?

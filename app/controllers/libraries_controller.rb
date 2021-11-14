@@ -1,5 +1,5 @@
 class LibrariesController < ApplicationController
-  def show    
+  def show  
     @assets = Asset.search(
       {
         library_id: current_library.id, 

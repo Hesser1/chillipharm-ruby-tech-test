@@ -14,8 +14,21 @@ class Asset < ApplicationRecord
   def self.search(params)
     library_id = params[:library_id]
     search = params[:search]
-    sort = params[:sort] || 'id_desc'  # sort types ['created_at_desc', 'created_at_asc', 'title_asc', 'title_desc']
-    
+    sort = params[:sort] # sort types ['created_at_desc', 'created_at_asc', 'title_asc', 'title_desc']
+    filter = params[:filter] # filter types ['all', 'video', 'audio', 'image']
+
+    unless search.present?
+      search = nil
+    end
+
+    unless sort.present?
+      sort = 'id_desc'
+    end
+
+    unless filter.present?
+      filter = nil
+    end
+
     # changing asc/desc to uppercase
     sort_arr = sort.split('_')
     sort_arr.last.upcase!
@@ -25,8 +38,6 @@ class Asset < ApplicationRecord
                   else
                     sort_arr[0..-2].join('_') + " #{sort_arr.last}"
                   end
-
-    filter = params[:filter] # filter types ['all', 'video', 'audio', 'image']
 
     # creating search engine
     query_str = ""

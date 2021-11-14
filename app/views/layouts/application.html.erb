@@ -36,11 +36,20 @@
       <%= link_to "All Libraries", root_path %>
     </div>
     <div class="col-xs-12 col-sm-6">
-      <%= form_tag library_path(current_library), method: :get do %>
+      <%= form_tag search_link(params[:filter], params[:search], params[:sort], params[:display_assets], "library", current_library) , method: :get do %>
       <div id="in-lib-search" class="input-group in-lib-search">
-        <input type="text" name="search" class="form-control" placeholder="Search library" value="<%= params[:search] %>">
+        <% if params[:filter].present? && params[:filter] != '' %>
+          <input type="text" name="filter" class="form-control hidden"  value="<%= params[:filter] %>">
+        <% end %>
+        <% if params[:sort].present? && params[:sort] != '' %>
+          <input type="text" name="sort" class="form-control hidden"  value="<%= params[:sort] %>">
+        <% end %>
+        <% if params[:display_assets].present? && params[:display_assets] != '' %>
+          <input type="text" name="display_assets" class="form-control hidden"  value="<%= params[:display_assets] %>">
+        <% end %>
+        <input type="text" name="search" class="form-control search" placeholder="Search library" value="<%= params[:search] %>">
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-default" type="button">Search</button>
+          <button type="submit" class="btn btn-default submit" type="button">Search</button>
         </span>
       </div>
       <% end %>
