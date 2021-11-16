@@ -1,0 +1,27 @@
+<div class="fancybox-titlebar">
+  Save Search, Filter and order by for reviewing later.
+</div>
+<form id="save_search_form" method="post" action="<%= save_search_link(params[:filter], params[:search], params[:sort], "save_search", params[:id]) %>">
+  <div class="fancybox-content">
+    <dl class="flex-width">
+      <dt>keyword</dt>
+       <dd> <%= params %></dd>
+       
+      <input type="text" id="id" name="id" class="form-control hidden" value="<%= params[:id] %>">
+      <input type="text" id="sort" name="sort" class="form-control hidden" value="<%= params[:sort] %>">
+      <input type="text" id="filter" name="filter" class="form-control hidden" value="<%= params[:filter] %>">
+      <input type="text" id="search" name="search" class="form-control hidden" value="<%= params[:search] %>">
+      <dt>Save Search Name:</dt>
+      <input type="text" id="save_name" name="save_name" size="30" required/>
+      
+    </dl>
+  </div>
+  <div class="fancybox-content clearfix">
+    <a href="javascript:parent.$.fancybox.close();" class="cancel-link left">
+      <input type="cancel" value="Cancel" />
+    </a>
+    <p>
+			<input type="submit" value="Save" />
+		</p>
+  </div>
+</form>

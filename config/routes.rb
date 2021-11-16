@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :libraries do
     member do
       get :info
+      get :save_search
+      post :save_search, to: "saved_searches#create"
+      delete :save_search, to: "saved_searches#delete"
     end
 
     resources :assets do
@@ -14,6 +17,6 @@ Rails.application.routes.draw do
         get :delete
         delete :delete
       end
-    end
+    end    
   end
 end

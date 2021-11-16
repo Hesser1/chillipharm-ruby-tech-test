@@ -96,12 +96,32 @@ module Account::LibrariesHelper
     section_link(library, section, args, object)
   end
 
+  def save_search_link(filter, search, sort, section, library, object=nil)
+    args = {}
+
+    if filter.present?
+      args[:filter] = filter
+    end
+
+    if sort.present?
+      args[:sort] = sort
+    end
+
+    if search.present?
+      args[:search] = search
+    end
+
+    section_link(library, section, args, object)
+  end
+  
   def section_link(library, section, args, object=nil)
     case section
     when "library"
       library_path(library, args)
     when "collection"
       library_collection_path(library, object, args)
+    when "save_search"
+      save_search_library_path(library, args)
     else
       library_path(library, args)
     end

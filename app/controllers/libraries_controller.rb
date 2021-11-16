@@ -8,6 +8,7 @@ class LibrariesController < ApplicationController
         sort: params[:sort]
       }
     )
+    @saved_searches = SavedSearches.where(library_id: current_library.id)
   end
 
   def index
@@ -23,6 +24,10 @@ class LibrariesController < ApplicationController
   end
 
   def info
+    render layout: false if request.xhr?
+  end
+
+  def save_search
     render layout: false if request.xhr?
   end
 end

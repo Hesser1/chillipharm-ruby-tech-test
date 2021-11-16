@@ -17,6 +17,12 @@
     <div class="row sub-header product-branding product-branding-asset-listing clearfix">
       <div class="col-xs-12">
         <%= link_to " Library Info", info_library_path(current_library), class: "fancybox action", "data-fancybox-type" => "ajax", style: "float: right; text-decoration:underline;" %>
+        <%= link_to " Save Search", save_search_link(params[:filter], params[:search], params[:sort], "save_search", current_library), class: "fancybox action", "data-fancybox-type" => "ajax", style: "float: right; text-decoration:underline; margin-right: 10px;" %>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col">
+          <%= render 'shared/saved_searches'%>
       </div>
     </div>
     <div class="row sub-header light">

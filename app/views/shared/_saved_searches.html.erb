@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <h1>Saved Search Results</h1>
+    <table id="saved_searches" class="table table-sm">
+        <thead>
+            <tr>
+            <th scope="col">Link</th>
+            <th scope="col">Name</th>
+            <th scope="col">Sort</th>
+            <th scope="col">Filter</th>
+            <th scope="col">Search</th>
+            <th scope="col">Created at</th>
+            <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @saved_searches.map do |saved_search| %>
+            <tr>
+            <td><a style="cursor: pointer;" href="<%= save_search_link(saved_search.filter, saved_search.keyword, saved_search.sort, "library", saved_search.library_id) %>">#</a></td>
+            <td>"<%= saved_search.name %>"</td>
+            <td>"<%= saved_search.sort %>"</td>
+            <td>"<%= saved_search.filter %>"</td>
+            <td>"<%= saved_search.keyword %>"</td>
+            <td>"<%= saved_search.created_at %>"</td>
+            <td><%= link_to "Delete", save_search_library_path({saved_search_id: saved_search.id, library_id: saved_search.library_id}), data: { method: :delete } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+        </table>
+</div>    

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_18_185826) do
+ActiveRecord::Schema.define(version: 2021_11_15_221614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,10 +145,11 @@ ActiveRecord::Schema.define(version: 2020_03_18_185826) do
     t.bigint "library_id"
     t.string "name", default: "", null: false
     t.string "keyword", default: "", null: false
-    t.integer "sort", default: 0, null: false
-    t.integer "filter", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "sort", default: "", null: false
+    t.string "filter", default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.time "deleted_at"
     t.index ["library_id"], name: "index_saved_searches_on_library_id"
   end
 
